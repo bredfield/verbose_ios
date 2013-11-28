@@ -18,7 +18,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+
     }
     return self;
 }
@@ -26,7 +26,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    if(!floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1){
+        [self.navigationBar setBarTintColor:UIColorFromRGB(BRANDPRIMARY)];
+        [self.navigationBar setTranslucent:YES];
+    }
+    
+    [self.navigationBar setTintColor:[UIColor whiteColor]];
+    [self.navigationBar setTitleTextAttributes:@{[UIColor whiteColor]:NSForegroundColorAttributeName}];
+    [self.navigationBar setBarStyle:UIBarStyleBlack];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning

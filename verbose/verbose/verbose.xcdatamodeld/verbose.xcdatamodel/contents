@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13A603" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Definition" syncable="YES"/>
-    <entity name="Word" syncable="YES">
+    <entity name="Word" representedClassName="Word" syncable="YES">
+        <attribute name="dateAdded" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dateLearned" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="definition" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="learned" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="part_of_speech" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="partOfSpeech" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wordID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Word" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Definition" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Word" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

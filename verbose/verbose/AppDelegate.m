@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "WordsViewController.h"
 
 @implementation AppDelegate
 
@@ -17,10 +18,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
+    //NOTE: What exactly is this doing?
+    self.mainMOC = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    [self.mainMOC setParentContext:self.managedObjectContext];
     
-    MainViewController *mainViewController = [[MainViewController new] initWithNibName:@"MainView" bundle:nil];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    WordsViewController *wordsViewController = [[WordsViewController alloc] initWithNibName:@"WordsView" bundle:nil];
+    MainViewController *mainViewController = [[MainViewController alloc] initWithRootViewController:wordsViewController];
     
     [self.window setRootViewController:mainViewController];
     
@@ -83,7 +88,7 @@
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        _managedObjectContext = [[NSManagedObjectContext alloc] init];
+        _managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
         [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
     return _managedObjectContext;
