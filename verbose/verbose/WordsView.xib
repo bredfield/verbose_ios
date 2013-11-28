@@ -34,6 +34,9 @@
                         <segment title="Learned"/>
                     </segments>
                     <color key="tintColor" red="0.1645250123" green="0.2447328731" blue="0.3053456182" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="learnedControlChanged:" destination="-1" eventType="valueChanged" id="yU0-YM-q7A"/>
+                    </connections>
                 </segmentedControl>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SfJ-hi-mmK">
                     <rect key="frame" x="260" y="444" width="40" height="40"/>

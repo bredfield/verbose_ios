@@ -45,7 +45,7 @@
                 <constraint firstItem="JXk-c3-c4S" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" id="v7V-Wl-9zl"/>
                 <constraint firstItem="JXk-c3-c4S" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="20" id="xOb-cc-e96"/>
             </constraints>
-            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+            <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>

@@ -31,7 +31,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self.wordTextField becomeFirstResponder];
     //Fix ios7 trans-navbar layout
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -132,6 +132,7 @@
     [word setValue:[searchWord objectForKey:@"text"] forKey:@"definition"];
     [word setValue:[searchWord objectForKey:@"partOfSpeech"] forKey:@"partOfSpeech"];
     [word setValue:[NSDate date] forKey:@"dateAdded"];
+    [word setValue:@NO forKey:@"learned"];
     
     [context save:nil];
     

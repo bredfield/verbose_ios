@@ -27,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.wordLabel setText:self.word.name];
+    [self.wordLabel setText:[self.word.name capitalizedString]];
     
     [self.definitionLabel setText:self.word.definition];
     self.definitionLabel.lineBreakMode = NSLineBreakByWordWrapping;

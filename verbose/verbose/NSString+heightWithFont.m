@@ -8,7 +8,7 @@
 
 #import "NSString+heightWithFont.h"
 
-@implementation NSString (heightWithFont)
+@implementation NSString (utility)
 
 -(float)heightWithFontSize:(float)fontSize{
     //DYNAMIC CELL HEIGHT

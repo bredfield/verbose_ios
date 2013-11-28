@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (heightWithFont)
+@interface NSString (utility)
 
 -(float)heightWithFontSize:(float)fontSize;
+//-(NSString *)capital
+
 
 @end

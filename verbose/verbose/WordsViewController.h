@@ -15,5 +15,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *addWordBtn;
 
 - (IBAction)addWordBtnPressed:(id)sender;
+- (IBAction)learnedControlChanged:(id)sender;
 
 @end

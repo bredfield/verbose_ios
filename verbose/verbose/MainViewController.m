@@ -32,7 +32,10 @@
     }
     
     [self.navigationBar setTintColor:[UIColor whiteColor]];
-    [self.navigationBar setTitleTextAttributes:@{[UIColor whiteColor]:NSForegroundColorAttributeName}];
+    [self.navigationBar setTitleTextAttributes:@{
+                                                 [UIColor whiteColor]:NSForegroundColorAttributeName,
+                                                 [UIFont fontWithName:@"Baskerville" size:15.0]:NSFontAttributeName
+                                                 }];
     [self.navigationBar setBarStyle:UIBarStyleBlack];
 }
 

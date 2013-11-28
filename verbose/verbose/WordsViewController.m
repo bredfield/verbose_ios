@@ -42,9 +42,6 @@
     
     [self setTitle:@"Verbose"];
     
-//    UIBarButtonItem *addBtn = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStyleBordered target:self action:@selector(addWord)];
-//    [self.navigationItem setRightBarButtonItem:addBtn];
-    
     [self.learnedControl setTintColor:UIColorFromRGB(BRANDPRIMARY)];
     
     [self.addWordBtn.layer setCornerRadius:self.addWordBtn.bounds.size.width / 2.0];
@@ -84,6 +81,14 @@
 
 }
 
+-(NSArray*)filterLearnedWords{
+    int learned = ([self.learnedControl selectedSegmentIndex]) == 0 ? 0 :1;
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"learned == %@", [NSNumber numberWithBool:learned]];
+    NSArray *filteredWords = [self.wordsArray filteredArrayUsingPredicate:predicate];
+
+    return filteredWords;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -91,7 +96,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.wordsArray count];
+    return [[self filterLearnedWords] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -103,15 +108,15 @@
     if (cell == nil)
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     
-    Word *word = [self.wordsArray objectAtIndex:indexPath.row];
-    [cell.textLabel setText:word.name];
+    Word *word = [[self filterLearnedWords] objectAtIndex:indexPath.row];
+    [cell.textLabel setText:[word.name capitalizedString]];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     WordDetailViewController *wordDetailViewController = [WordDetailViewController new];
-    wordDetailViewController.word = [self.wordsArray objectAtIndex:indexPath.row];
+    wordDetailViewController.word = [[self filterLearnedWords] objectAtIndex:indexPath.row];
     
     [self.navigationController pushViewController:wordDetailViewController animated:YES];
 }
@@ -119,5 +124,9 @@
 - (IBAction)addWordBtnPressed:(id)sender {
     AddWordViewController *addWordViewController = [AddWordViewController new];
     [self.navigationController pushViewController:addWordViewController animated:YES];
+}
+
+- (IBAction)learnedControlChanged:(id)sender {
+    [self.wordsTableView reloadData];
 }
 @end
