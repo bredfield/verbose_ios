@@ -26,12 +26,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if(!floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1){
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")){
         [self.navigationBar setBarTintColor:UIColorFromRGB(BRANDPRIMARY)];
-        [self.navigationBar setTranslucent:YES];
+        [self.navigationBar setTranslucent:NO];
+        [self.navigationBar setTintColor:[UIColor whiteColor]];
     }
     
-    [self.navigationBar setTintColor:[UIColor whiteColor]];
     [self.navigationBar setTitleTextAttributes:@{
                                                  [UIColor whiteColor]:NSForegroundColorAttributeName,
                                                  [UIFont fontWithName:@"Baskerville" size:15.0]:NSFontAttributeName

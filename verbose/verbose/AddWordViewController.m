@@ -11,6 +11,7 @@
 #import "Word.h"
 #import "NSString+heightWithFont.h"
 
+
 @interface AddWordViewController ()
 
 @property (strong, nonatomic) NSMutableArray *searchArray;
@@ -31,13 +32,43 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Show keyboard
     [self.wordTextField becomeFirstResponder];
+
     //Fix ios7 trans-navbar layout
     if ([self respondsToSelector:@selector(setEdgesForExtendedLayout:)]) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     
+    //configure navbar
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")){
+        [self.navigationController.navigationBar setBarTintColor:UIColorFromRGB(BRANDPRIMARY)];
+        [self.navigationController.navigationBar setTranslucent:NO];
+        [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    }
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:@{
+                                                 [UIColor whiteColor]:NSForegroundColorAttributeName,
+                                                 [UIFont fontWithName:@"Baskerville" size:15.0]:NSFontAttributeName
+                                                 }];
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
+    
+    //Add cancel button
+    
+    UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                    style:UIBarButtonItemStylePlain target:self action:@selector(cancelBtnPressed)];
+    
+    self.navigationItem.leftBarButtonItem = cancelBtn;
+    
+    [self setTitle:@"Add Word"];
+    
     self.searchArray = [[NSMutableArray alloc]init];
+}
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning
@@ -123,19 +154,24 @@
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     
     NSManagedObjectContext *context = appDelegate.managedObjectContext;
-    NSManagedObject *word = [NSEntityDescription
-                             insertNewObjectForEntityForName:@"Word"
-                             inManagedObjectContext:context];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Word" inManagedObjectContext:context];
     NSDictionary *searchWord = [self.searchArray objectAtIndex:indexPath.row];
     
-    [word setValue:[searchWord objectForKey:@"word"] forKey:@"name"];
-    [word setValue:[searchWord objectForKey:@"text"] forKey:@"definition"];
-    [word setValue:[searchWord objectForKey:@"partOfSpeech"] forKey:@"partOfSpeech"];
-    [word setValue:[NSDate date] forKey:@"dateAdded"];
-    [word setValue:@NO forKey:@"learned"];
+    Word *word = [[Word alloc] initWithEntity:entity insertIntoManagedObjectContext:context];
     
+    [word setName:[searchWord objectForKey:@"word"]];
+    [word setDefinition:[searchWord objectForKey:@"text"]];
+    [word setPartOfSpeech:[searchWord objectForKey:@"partOfSpeech"]];
+    [word setDateAdded:[NSDate date]];
+    [word setLearned:@NO];
     [context save:nil];
     
-    [self.navigationController popViewControllerAnimated:YES];
+//    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+-(void)cancelBtnPressed{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 @end

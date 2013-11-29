@@ -13,4 +13,6 @@
 @property (strong, nonatomic) Word *word;
 @property (strong, nonatomic) IBOutlet UILabel *wordLabel;
 @property (strong, nonatomic) IBOutlet UILabel *definitionLabel;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *learnedControl;
+- (IBAction)learnedControlChanged:(id)sender;
 @end

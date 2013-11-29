@@ -123,7 +123,11 @@
 
 - (IBAction)addWordBtnPressed:(id)sender {
     AddWordViewController *addWordViewController = [AddWordViewController new];
-    [self.navigationController pushViewController:addWordViewController animated:YES];
+//    [self.navigationController pushViewController:addWordViewController animated:YES];
+    
+    //Wrap viewcontroller in a navigation controller for easy ios7 navbar
+    UINavigationController *navWrap = [[UINavigationController alloc] initWithRootViewController:addWordViewController];
+    [self presentViewController:navWrap animated:YES completion:nil];
 }
 
 - (IBAction)learnedControlChanged:(id)sender {
