@@ -8,11 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		B5358BE21847B20A00A1B3B5 /* NSString+heightWithFont.m in Sources */ = {isa = PBXBuildFile; fileRef = B5358BE11847B20A00A1B3B5 /* NSString+heightWithFont.m */; };
+		B5723F8218493AE9007746DF /* WordListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B5723F8118493AE9007746DF /* WordListCell.m */; };
+		B5723F8718493C22007746DF /* WordListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5723F8618493C22007746DF /* WordListCell.xib */; };
 		B5AFD27F183C5364004B97B6 /* AddWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AFD27D183C5364004B97B6 /* AddWordViewController.m */; };
 		B5AFD280183C5364004B97B6 /* AddWordView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5AFD27E183C5364004B97B6 /* AddWordView.xib */; };
 		B5AFD287183C5490004B97B6 /* WordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5AFD285183C5490004B97B6 /* WordDetailViewController.m */; };
 		B5AFD288183C5490004B97B6 /* WordDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5AFD286183C5490004B97B6 /* WordDetailView.xib */; };
-		B5E2ECBE18412C9F002CB7B7 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E2ECBD18412C9F002CB7B7 /* Word.m */; };
+		B5B22ED7184A6D730092D728 /* Word.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B22ED6184A6D730092D728 /* Word.m */; };
+		B5B22EE1184A7A390092D728 /* QuizViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5B22EDF184A7A390092D728 /* QuizViewController.m */; };
+		B5B22EE2184A7A390092D728 /* QuizViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5B22EE0184A7A390092D728 /* QuizViewController.xib */; };
 		B5EB6223183C116000DE6004 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EB6222183C116000DE6004 /* Foundation.framework */; };
 		B5EB6225183C116000DE6004 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EB6224183C116000DE6004 /* CoreGraphics.framework */; };
 		B5EB6227183C116000DE6004 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5EB6226183C116000DE6004 /* UIKit.framework */; };
@@ -47,14 +51,20 @@
 /* Begin PBXFileReference section */
 		B5358BE01847B20A00A1B3B5 /* NSString+heightWithFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+heightWithFont.h"; sourceTree = "<group>"; };
 		B5358BE11847B20A00A1B3B5 /* NSString+heightWithFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+heightWithFont.m"; sourceTree = "<group>"; };
+		B5723F8018493AE9007746DF /* WordListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordListCell.h; sourceTree = "<group>"; };
+		B5723F8118493AE9007746DF /* WordListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordListCell.m; sourceTree = "<group>"; };
+		B5723F8618493C22007746DF /* WordListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordListCell.xib; sourceTree = "<group>"; };
 		B5AFD27C183C5364004B97B6 /* AddWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddWordViewController.h; sourceTree = "<group>"; };
 		B5AFD27D183C5364004B97B6 /* AddWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddWordViewController.m; sourceTree = "<group>"; };
 		B5AFD27E183C5364004B97B6 /* AddWordView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddWordView.xib; sourceTree = "<group>"; };
 		B5AFD284183C5490004B97B6 /* WordDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WordDetailViewController.h; sourceTree = "<group>"; };
 		B5AFD285183C5490004B97B6 /* WordDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WordDetailViewController.m; sourceTree = "<group>"; };
 		B5AFD286183C5490004B97B6 /* WordDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WordDetailView.xib; sourceTree = "<group>"; };
-		B5E2ECBC18412C9F002CB7B7 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
-		B5E2ECBD18412C9F002CB7B7 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
+		B5B22ED5184A6D730092D728 /* Word.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Word.h; sourceTree = "<group>"; };
+		B5B22ED6184A6D730092D728 /* Word.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Word.m; sourceTree = "<group>"; };
+		B5B22EDE184A7A390092D728 /* QuizViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QuizViewController.h; sourceTree = "<group>"; };
+		B5B22EDF184A7A390092D728 /* QuizViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QuizViewController.m; sourceTree = "<group>"; };
+		B5B22EE0184A7A390092D728 /* QuizViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QuizViewController.xib; sourceTree = "<group>"; };
 		B5EB621F183C116000DE6004 /* verbose.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = verbose.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5EB6222183C116000DE6004 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B5EB6224183C116000DE6004 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -107,11 +117,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B5723F8318493AF6007746DF /* Words */ = {
+			isa = PBXGroup;
+			children = (
+				B5EB626C183C4DCC00DE6004 /* WordsViewController.h */,
+				B5EB626D183C4DCC00DE6004 /* WordsViewController.m */,
+				B5723F8018493AE9007746DF /* WordListCell.h */,
+				B5723F8118493AE9007746DF /* WordListCell.m */,
+			);
+			name = Words;
+			sourceTree = "<group>";
+		};
+		B5723F8418493B07007746DF /* Add Word */ = {
+			isa = PBXGroup;
+			children = (
+				B5AFD27C183C5364004B97B6 /* AddWordViewController.h */,
+				B5AFD27D183C5364004B97B6 /* AddWordViewController.m */,
+			);
+			name = "Add Word";
+			sourceTree = "<group>";
+		};
+		B5723F8518493B0D007746DF /* Word Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B5AFD284183C5490004B97B6 /* WordDetailViewController.h */,
+				B5AFD285183C5490004B97B6 /* WordDetailViewController.m */,
+			);
+			name = "Word Detail";
+			sourceTree = "<group>";
+		};
 		B5AFD28C183D1827004B97B6 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		B5B22ED8184A78E90092D728 /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				B5B22EDE184A7A390092D728 /* QuizViewController.h */,
+				B5B22EDF184A7A390092D728 /* QuizViewController.m */,
+				B5B22EE0184A7A390092D728 /* QuizViewController.xib */,
+			);
+			name = Quiz;
 			sourceTree = "<group>";
 		};
 		B5EB6216183C116000DE6004 = {
@@ -207,6 +256,7 @@
 				B5EB626E183C4DCC00DE6004 /* WordsView.xib */,
 				B5AFD27E183C5364004B97B6 /* AddWordView.xib */,
 				B5AFD286183C5490004B97B6 /* WordDetailView.xib */,
+				B5723F8618493C22007746DF /* WordListCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -216,12 +266,10 @@
 			children = (
 				B5EB6267183C4C8100DE6004 /* MainViewController.h */,
 				B5EB6268183C4C8100DE6004 /* MainViewController.m */,
-				B5EB626C183C4DCC00DE6004 /* WordsViewController.h */,
-				B5EB626D183C4DCC00DE6004 /* WordsViewController.m */,
-				B5AFD27C183C5364004B97B6 /* AddWordViewController.h */,
-				B5AFD27D183C5364004B97B6 /* AddWordViewController.m */,
-				B5AFD284183C5490004B97B6 /* WordDetailViewController.h */,
-				B5AFD285183C5490004B97B6 /* WordDetailViewController.m */,
+				B5723F8318493AF6007746DF /* Words */,
+				B5723F8418493B07007746DF /* Add Word */,
+				B5723F8518493B0D007746DF /* Word Detail */,
+				B5B22ED8184A78E90092D728 /* Quiz */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -237,8 +285,8 @@
 		B5EB6266183C150500DE6004 /* Word */ = {
 			isa = PBXGroup;
 			children = (
-				B5E2ECBC18412C9F002CB7B7 /* Word.h */,
-				B5E2ECBD18412C9F002CB7B7 /* Word.m */,
+				B5B22ED5184A6D730092D728 /* Word.h */,
+				B5B22ED6184A6D730092D728 /* Word.m */,
 			);
 			name = Word;
 			sourceTree = "<group>";
@@ -318,12 +366,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5723F8718493C22007746DF /* WordListCell.xib in Resources */,
 				B5EB622F183C116000DE6004 /* InfoPlist.strings in Resources */,
 				B5AFD280183C5364004B97B6 /* AddWordView.xib in Resources */,
 				B5EB626B183C4C8100DE6004 /* MainView.xib in Resources */,
 				B5EB6270183C4DCC00DE6004 /* WordsView.xib in Resources */,
 				B5EB623A183C116000DE6004 /* Images.xcassets in Resources */,
 				B5AFD288183C5490004B97B6 /* WordDetailView.xib in Resources */,
+				B5B22EE2184A7A390092D728 /* QuizViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,10 +397,12 @@
 				B5EB626A183C4C8100DE6004 /* MainViewController.m in Sources */,
 				B5EB6235183C116000DE6004 /* AppDelegate.m in Sources */,
 				B5AFD287183C5490004B97B6 /* WordDetailViewController.m in Sources */,
-				B5E2ECBE18412C9F002CB7B7 /* Word.m in Sources */,
+				B5B22ED7184A6D730092D728 /* Word.m in Sources */,
+				B5B22EE1184A7A390092D728 /* QuizViewController.m in Sources */,
 				B5358BE21847B20A00A1B3B5 /* NSString+heightWithFont.m in Sources */,
 				B5EB6231183C116000DE6004 /* main.m in Sources */,
 				B5AFD27F183C5364004B97B6 /* AddWordViewController.m in Sources */,
+				B5723F8218493AE9007746DF /* WordListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

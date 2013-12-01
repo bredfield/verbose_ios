@@ -13,6 +13,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *wordTextField;
 @property (strong, nonatomic) IBOutlet UIButton *addButton;
 @property (strong, nonatomic) IBOutlet UITableView *searchTable;
+@property (strong, nonatomic) IBOutlet UIButton *clipBtn;
 - (IBAction)searchWord:(id)sender;
+- (IBAction)clipBtnPressed:(id)sender;
 
 @end

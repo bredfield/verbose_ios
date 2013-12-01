@@ -55,7 +55,6 @@
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
     
     //Add cancel button
-    
     UIBarButtonItem *cancelBtn = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
                                                                     style:UIBarButtonItemStylePlain target:self action:@selector(cancelBtnPressed)];
     
@@ -84,6 +83,35 @@
     [self fetchSearchData:self.wordTextField.text];
 }
 
+- (IBAction)clipBtnPressed:(id)sender {
+    //Get clipboard data
+    NSString *clipboard = [[UIPasteboard generalPasteboard].string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    NSString *urlRegEx =
+    @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+    NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
+    BOOL isURL = [urlTest evaluateWithObject:clipboard];
+
+    //Check if exists & isn't url
+    if(isURL || clipboard.length == 0){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Whoops" message:@"Invalid clipboard data." delegate:self cancelButtonTitle:@"Sorry about that" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    //Fill textfield & search
+    else{
+        [self.wordTextField setText:clipboard];
+        [self searchWord:nil];
+    }
+}
+
+- (BOOL) validateUrl: (NSString *) candidate {
+    NSString *urlRegEx =
+    @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+    NSPredicate *urlTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", urlRegEx];
+    return [urlTest evaluateWithObject:candidate];
+}
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField == self.wordTextField) {
         [self fetchSearchData: textField.text];
@@ -94,12 +122,15 @@
 }
 
 -(void)fetchSearchData:(NSString *)searchWord{
+    
     //Pull search words from API
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData* searchData = [NSData dataWithContentsOfURL:
-                            [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:3000/words/search.json?word=%@", searchWord]]
-                            ];
-
+        NSString *apiKey = @"c3b45323cb219cf66c5420b4aaa035b8bb6773d9ca99edf7f";
+        NSString *searchString = [NSString stringWithFormat:@"http://api.wordnik.com/v4/word.json/%@/definitions?`caseSensitive=false&useCanonical=true&api_key=%@", searchWord, apiKey];
+        NSURL *searchURL = [NSURL URLWithString:[searchString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+        
+        NSData* searchData = [NSData dataWithContentsOfURL:searchURL];
+        
         NSArray* json = nil;
         if (searchData) {
             json = [NSJSONSerialization
@@ -117,6 +148,7 @@
         
     });
 }
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -162,16 +194,15 @@
     [word setName:[searchWord objectForKey:@"word"]];
     [word setDefinition:[searchWord objectForKey:@"text"]];
     [word setPartOfSpeech:[searchWord objectForKey:@"partOfSpeech"]];
-    [word setDateAdded:[NSDate date]];
-    [word setLearned:@NO];
+    [word pullSynonyms];
     [context save:nil];
     
-//    [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)cancelBtnPressed{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
 
 @end

@@ -11,16 +11,18 @@
 #import "AddWordViewController.h"
 #import "WordDetailViewController.h"
 #import "Word.h"
+#import "WordListCell.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface WordsViewController ()
 
 //Private vars
-@property (strong, nonatomic) NSArray *wordsArray;
+@property (strong, nonatomic) NSArray *learnedArray, *notlearnedArray;
 
 @end
 
 @implementation WordsViewController
+#define cellIdentifier @"WordListCellIdentifier"
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,8 +52,13 @@
     [self.addWordBtn setBackgroundColor:[UIColor whiteColor]];
     [self.addWordBtn setTitleColor:UIColorFromRGB(BRANDSECONDARY) forState:UIControlStateNormal];
     [self.addWordBtn setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-    self.wordsArray = [[NSArray alloc] init];
+    
+    self.learnedArray = [NSArray new];
+    self.notlearnedArray = [NSArray new];
     [self fetchWords];
+    
+    [self.wordsTableView registerNib:[UINib nibWithNibName:@"WordListCell" bundle:nil]
+                  forCellReuseIdentifier:cellIdentifier];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -68,25 +75,37 @@
     AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSManagedObjectContext *context = appDelegate.managedObjectContext;
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    //Set up core data fetch
+    NSFetchRequest *fetchRequest = [NSFetchRequest new];
     NSEntityDescription *entity = [NSEntityDescription
                                    entityForName:@"Word" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
-    self.wordsArray = [context executeFetchRequest:fetchRequest error:nil];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
+                                        initWithKey:@"dateAdded" ascending:NO];
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    
+    //Filter not learned
+    NSPredicate *notlearnedPredicate = [NSPredicate predicateWithFormat:@"learned == 0"];
+    [fetchRequest setPredicate:notlearnedPredicate];
+    
+    self.notlearnedArray = [context executeFetchRequest:fetchRequest error:nil];
+    
+    //Filter learned
+    NSPredicate *learnedPredicate = [NSPredicate predicateWithFormat:@"learned == 1"];
+    [fetchRequest setPredicate:learnedPredicate];
+    
+    self.learnedArray = [context executeFetchRequest:fetchRequest error:nil];
+    
 }
 
 -(void)addWord{
-    AddWordViewController *addWordViewController = [AddWordViewController new];
+    AddWordViewController *addWordViewController = [AddWordViewController new]; 
     [self.navigationController pushViewController:addWordViewController animated:YES];
 
 }
 
--(NSArray*)filterLearnedWords{
-    int learned = ([self.learnedControl selectedSegmentIndex]) == 0 ? 0 :1;
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"learned == %@", [NSNumber numberWithBool:learned]];
-    NSArray *filteredWords = [self.wordsArray filteredArrayUsingPredicate:predicate];
-
-    return filteredWords;
+-(NSArray*)currentArray{
+    return ([self.learnedControl selectedSegmentIndex]) == 0 ? self.notlearnedArray : self.learnedArray;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -96,34 +115,36 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self filterLearnedWords] count];
+    return [self.currentArray count];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"wordCell";
     
-    UITableViewCell *cell = [self.wordsTableView dequeueReusableCellWithIdentifier:@"wordCell"];
+    WordListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    if (cell == nil)
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    Word *word = [self.currentArray objectAtIndex:indexPath.row];
+    [cell.nameLabel setText:[word.name capitalizedString]];
     
-    Word *word = [[self filterLearnedWords] objectAtIndex:indexPath.row];
-    [cell.textLabel setText:[word.name capitalizedString]];
+    NSString *pos = [NSString stringWithFormat:@"[%@]",[word.partOfSpeech capitalizedString]];
+    [cell.posLabel setText:pos];
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateStyle:NSDateFormatterShortStyle];
+
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     WordDetailViewController *wordDetailViewController = [WordDetailViewController new];
-    wordDetailViewController.word = [[self filterLearnedWords] objectAtIndex:indexPath.row];
+    wordDetailViewController.word = [self.currentArray objectAtIndex:indexPath.row];
     
     [self.navigationController pushViewController:wordDetailViewController animated:YES];
 }
 
 - (IBAction)addWordBtnPressed:(id)sender {
     AddWordViewController *addWordViewController = [AddWordViewController new];
-//    [self.navigationController pushViewController:addWordViewController animated:YES];
     
     //Wrap viewcontroller in a navigation controller for easy ios7 navbar
     UINavigationController *navWrap = [[UINavigationController alloc] initWithRootViewController:addWordViewController];

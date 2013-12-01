@@ -19,7 +19,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" canCancelContentTouches="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7GH-vc-cyO">
-                    <rect key="frame" x="0.0" y="48" width="320" height="456"/>
+                    <rect key="frame" x="0.0" y="49" width="320" height="455"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -27,6 +27,14 @@
                         <outlet property="delegate" destination="-1" id="OtA-NX-5f6"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fEe-rJ-qhe">
+                    <rect key="frame" x="0.0" y="-1" width="320" height="50"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.95890546085858586" green="0.95890546085858586" blue="0.95890546085858586" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="kwT-en-te1"/>
+                    </constraints>
+                </view>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2GY-qI-pdR">
                     <rect key="frame" x="94" y="10" width="133" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -61,12 +69,15 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="fEe-rJ-qhe" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="8k6-jR-2VW"/>
                 <constraint firstAttribute="bottom" secondItem="7GH-vc-cyO" secondAttribute="bottom" id="BfF-wb-uLE"/>
                 <constraint firstItem="7GH-vc-cyO" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Gi2-4K-GEK"/>
-                <constraint firstItem="7GH-vc-cyO" firstAttribute="top" secondItem="2GY-qI-pdR" secondAttribute="bottom" constant="10" id="NBE-uF-ciw"/>
+                <constraint firstItem="7GH-vc-cyO" firstAttribute="top" secondItem="fEe-rJ-qhe" secondAttribute="bottom" id="Kks-3q-ILB"/>
+                <constraint firstItem="2GY-qI-pdR" firstAttribute="centerY" secondItem="fEe-rJ-qhe" secondAttribute="centerY" id="ZpS-7a-pOE"/>
                 <constraint firstAttribute="trailing" secondItem="SfJ-hi-mmK" secondAttribute="trailing" constant="20" id="lbz-Ng-13T"/>
                 <constraint firstAttribute="bottom" secondItem="SfJ-hi-mmK" secondAttribute="bottom" constant="20" id="pf0-i3-8tZ"/>
                 <constraint firstAttribute="trailing" secondItem="7GH-vc-cyO" secondAttribute="trailing" id="q15-1r-hpG"/>
+                <constraint firstAttribute="trailing" secondItem="fEe-rJ-qhe" secondAttribute="trailing" id="uHb-t1-5qP"/>
                 <constraint firstItem="2GY-qI-pdR" firstAttribute="top" secondItem="1" secondAttribute="top" constant="10" id="v4q-V8-jfS"/>
                 <constraint firstAttribute="centerX" secondItem="2GY-qI-pdR" secondAttribute="centerX" id="xGZ-4M-m3S"/>
             </constraints>
